@@ -16,9 +16,14 @@ $page = $_GET['page'] ?? 'home';
         body { margin: 0; display: flex; font-family: 'Times New Roman', serif; background: var(--bg); color: white; }
         
         /* Sidebar */
-        .sidebar { width: 250px; height: 100vh; background: var(--side); border-right: 1px solid var(--gold); padding: 20px; position: fixed; }
-        .sidebar a { display: block; color: #fff; padding: 15px; text-decoration: none; border-bottom: 1px solid #222; }
-        .sidebar a:hover { color: var(--gold); }
+        .sidebar { width: 250px; height: 100vh; background: var(--side); border-right: 1px solid rgba(212, 175, 55, 0.2); padding: 0; position: fixed; display: flex; flex-direction: column; }
+        .sidebar-header { padding: 30px 25px; border-bottom: 1px solid rgba(212, 175, 55, 0.1); margin-bottom: 10px; }
+        .sidebar-header h2 { margin: 0; font-size: 1.1rem; letter-spacing: 3px; font-family: 'Playfair Display', serif; }
+        
+        .sidebar a { display: block; color: #aaa; padding: 18px 25px; text-decoration: none; border-bottom: 1px solid rgba(255, 255, 255, 0.02); font-size: 0.8rem; transition: 0.3s; letter-spacing: 1px; text-transform: uppercase; font-family: 'Inter', sans-serif; }
+        .sidebar a:last-child { border-bottom: none; }
+        .sidebar a:hover { color: var(--gold); background: rgba(212, 175, 55, 0.05); padding-left: 30px; }
+        .sidebar a.active { color: var(--gold); border-left: 3px solid var(--gold); background: rgba(212, 175, 55, 0.03); }
         
         /* Main Content */
         .main { margin-left: 260px; padding: 20px; width: 100%; }
@@ -28,10 +33,13 @@ $page = $_GET['page'] ?? 'home';
 <body>
 
 <div class="sidebar">
-    <h2 style="color:var(--gold)">MENU ADMIN</h2>
-    <a href="?page=home">Dashboard Utama</a>
-    <a href="?page=laporan">Daftar Laporan</a> <a href="?page=grafik">Analisis Grafik</a>
-    <a href="../logout.php">Logout</a>
+    <div class="sidebar-header">
+        <h2 style="color:var(--gold)">MENU ADMIN</h2>
+    </div>
+    <a href="?page=home" class="<?= $page == 'home' ? 'active' : '' ?>">Dashboard Utama</a>
+    <a href="?page=laporan" class="<?= $page == 'laporan' ? 'active' : '' ?>">Daftar Laporan</a>
+    <a href="?page=grafik" class="<?= $page == 'grafik' ? 'active' : '' ?>">Analisis Grafik</a>
+    <a href="../logout.php" style="margin-top: auto; border-top: 1px solid rgba(212, 175, 55, 0.1); color: #ff6b6b; font-weight: bold;">🚪 Logout</a>
 </div>
 
 <div class="main">
