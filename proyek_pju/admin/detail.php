@@ -28,7 +28,7 @@ if (!$data) {
         <div>
             <p style="color:#888; font-size: 0.8rem; margin:0;">Status Laporan</p>
             <strong style="color: var(--gold); font-size: 1.1rem; text-transform: uppercase;">
-                <?= htmlspecialchars($data['status']) ?>
+                <?= htmlspecialchars(str_replace('_', ' ', $data['status'])) ?>
             </strong>
         </div>
         <div>
