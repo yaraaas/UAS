@@ -1,11 +1,6 @@
 <?php
-// Pastikan session sudah aktif dan admin terautentikasi
-session_start();
-if (!isset($_SESSION['user_id']) || $_SESSION['role'] != 'admin') {
-    header("Location: ../login.php");
-    exit();
-}
-include '../config/koneksi.php';
+// File ini disertakan dalam dashboard.php, 
+// sehingga session_start() dan koneksi database sudah ditangani di file master tersebut.
 ?>
 
 <!DOCTYPE html>
@@ -62,7 +57,7 @@ include '../config/koneksi.php';
                     </td>
                     <td style="text-align: center;">
                         <span class="status-badge" style="background: <?= $bg_color ?>;">
-                            <?= strtoupper($d['status']) ?>
+                            <?= strtoupper(str_replace('_', ' ', $d['status'])) ?>
                         </span>
                     </td>
                     <td style="text-align: center;">
