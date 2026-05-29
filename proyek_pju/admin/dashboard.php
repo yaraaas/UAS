@@ -1,6 +1,13 @@
 <?php
 session_start();
-include '../config/koneksi.php';
+
+// Proteksi Halaman Admin: Cek apakah user sudah login dan memiliki role admin
+if (!isset($_SESSION['user_id']) || $_SESSION['role'] != 'admin') {
+    header("Location: ../login.php");
+    exit();
+}
+
+require_once '../config/koneksi.php';
 // Tentukan halaman yang aktif
 $page = $_GET['page'] ?? 'home';
 ?>
@@ -39,7 +46,7 @@ $page = $_GET['page'] ?? 'home';
     <a href="?page=home" class="<?= $page == 'home' ? 'active' : '' ?>">Dashboard Utama</a>
     <a href="?page=laporan" class="<?= $page == 'laporan' ? 'active' : '' ?>">Daftar Laporan</a>
     <a href="?page=grafik" class="<?= $page == 'grafik' ? 'active' : '' ?>">Analisis Grafik</a>
-    <a href="../logout.php" style="margin-top: auto; border-top: 1px solid rgba(212, 175, 55, 0.1); color: #ff6b6b; font-weight: bold;">🚪 Logout</a>
+    <a href="../logout.php" style="border-top: 1px solid rgba(212, 175, 55, 0.1); color: #ff6b6b; font-weight: bold;">🚪 Logout</a>
 </div>
 
 <div class="main">
