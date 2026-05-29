@@ -1,4 +1,5 @@
 <?php
+// 1. Gunakan file koneksi terpusat agar nama database selalu sinkron
 require_once 'config/koneksi.php';
 
 // --- TAMBAHKAN LOGIKA UNTUK MENANGANI PENGIRIMAN LAPORAN (POST) ---
@@ -79,7 +80,7 @@ if (!$data) {
     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px;">
         <div>
             <p style="color:#888; font-size: 0.8rem; margin:0;">Status Laporan</p>
-            <strong style="color: var(--gold); font-size: 1.1rem; text-transform: uppercase;"><?= htmlspecialchars($data['status']) ?></strong>
+            <strong style="color: var(--gold); font-size: 1.1rem; text-transform: uppercase;"><?= htmlspecialchars(str_replace('_', ' ', $data['status'])) ?></strong>
         </div>
         <div>
             <p style="color:#888; font-size: 0.8rem; margin:0;">Tingkat Prioritas</p>
